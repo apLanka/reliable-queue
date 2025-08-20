@@ -1,4 +1,4 @@
-# Reliable Queue - Production-Ready Task Management
+# Reliable Queue
 
 🚀 **A Powerful, Production-Ready Queue System for JavaScript & TypeScript**
 
