@@ -1,6 +1,7 @@
 {
   "name": "@aplanka/reliable-queue",
   "version": "1.0.0",
+  "type": "module",
   "description": "A reliable, generic queue system with retry logic, status tracking, and React integration",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
