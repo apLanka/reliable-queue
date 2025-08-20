@@ -1,0 +1,66 @@
+{
+  "name": "@aplanka/reliable-queue",
+  "version": "1.0.0",
+  "description": "A reliable, generic queue system with retry logic, status tracking, and React integration",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "queue",
+    "reliable",
+    "retry",
+    "task-queue",
+    "message-queue",
+    "async",
+    "typescript",
+    "react"
+  ],
+  "author": "Pasindu Lanka",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apLanka/reliable-queue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/apLanka/reliable-queue/issues"
+  },
+  "homepage": "https://github.com/apLanka/reliable-queue#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/jest": "^29.5.8",
+    "@types/react": "^18.2.37",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.0.5",
+    "react": "^18.2.0",
+    "rollup": "^4.5.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "ts-jest": "^29.1.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.2.2"
+  }
+}
