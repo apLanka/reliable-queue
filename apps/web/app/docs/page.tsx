@@ -143,7 +143,7 @@ export default function DocsPage() {
             </h1>
             <p className="mt-8 text-xl leading-8 text-blue-100 max-w-2xl mx-auto text-pretty">
               Everything you need to know about Reliable Queue. From basic usage to advanced configurations, 
-              we've got you covered with comprehensive guides and examples.
+              we&apos;ve got you covered with comprehensive guides and examples.
             </p>
             
             {/* Quick Links */}
@@ -313,7 +313,7 @@ export default function DocsPage() {
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600 text-pretty max-w-2xl mx-auto">
               Check out our examples and interactive demo to see Reliable Queue in action. 
-              From simple use cases to complex workflows, we've got you covered.
+              From simple use cases to complex workflows, we&apos;ve got you covered.
             </p>
             
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-slideInRight" style={{ animationDelay: '200ms' }}>

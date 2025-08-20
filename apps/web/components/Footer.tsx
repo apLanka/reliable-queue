@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github, Heart, Layers3, BookOpen, Code2, FileText, Package, Star, ExternalLink } from 'lucide-react';
+import { Github, Heart, Layers3, BookOpen, FileText, Package, Star, ExternalLink } from 'lucide-react';
 
 const footerLinks = {
   documentation: [
