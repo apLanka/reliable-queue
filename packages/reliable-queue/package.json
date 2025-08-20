@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/apLanka/reliable-queue/issues"
   },
-  "homepage": "https://github.com/apLanka/reliable-queue#readme",
+  "homepage": "https://reliable-queue.aplanka.dev/",
   "peerDependencies": {
     "react": ">=16.8.0"
   },
