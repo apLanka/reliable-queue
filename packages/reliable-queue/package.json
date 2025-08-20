@@ -32,7 +32,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/apLanka/reliable-queue.git"
+    "url": "git+https://github.com/apLanka/reliable-queue.git"
   },
   "bugs": {
     "url": "https://github.com/apLanka/reliable-queue/issues"
