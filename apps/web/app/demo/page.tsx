@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Play, Pause, RotateCcw, Trash2, Plus, AlertCircle, Clock, CheckCircle, XCircle, Loader2, Activity } from 'lucide-react';
+import { Play, Pause, RotateCcw, Trash2, Plus, AlertCircle, Clock, CheckCircle, XCircle, Loader2, Activity, Save } from 'lucide-react';
 
 // Demo queue implementation (simplified for browser demo)
 interface DemoTask {
@@ -31,6 +31,61 @@ export default function DemoPage() {
   const [maxRetries] = useState(3);
   const [retryDelay] = useState(1000);
   const [concurrency] = useState(2);
+  const [isPersistent, setIsPersistent] = useState(false);
+
+  // Persistence functions
+  const STORAGE_KEY = 'reliable-queue-demo-tasks';
+  
+  const saveTasks = useCallback((tasksToSave: DemoTask[]) => {
+    if (isPersistent) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasksToSave));
+      } catch (error) {
+        console.warn('Failed to save tasks to localStorage:', error);
+      }
+    }
+  }, [isPersistent]);
+
+  const loadTasks = useCallback(() => {
+    if (isPersistent) {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsedTasks = JSON.parse(saved) as DemoTask[];
+          return parsedTasks;
+        }
+      } catch (error) {
+        console.warn('Failed to load tasks from localStorage:', error);
+      }
+    }
+    return [];
+  }, [isPersistent]);
+
+  const clearPersistedTasks = useCallback(() => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      console.warn('Failed to clear persisted tasks:', error);
+    }
+  }, []);
+
+  // Load persisted tasks when persistence is enabled
+  useEffect(() => {
+    if (isPersistent) {
+      const persistedTasks = loadTasks();
+      if (persistedTasks.length > 0) {
+        setTasks(persistedTasks);
+      }
+    } else {
+      // Clear localStorage when persistence is disabled
+      clearPersistedTasks();
+    }
+  }, [isPersistent, loadTasks, clearPersistedTasks]);
+
+  // Save tasks whenever they change and persistence is enabled
+  useEffect(() => {
+    saveTasks(tasks);
+  }, [tasks, saveTasks]);
 
   // Calculate stats
   const stats: QueueStats = {
@@ -217,6 +272,18 @@ export default function DemoPage() {
                     <Trash2 className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Clear All</span>
                   </button>
+
+                  <button
+                    onClick={() => setIsPersistent(!isPersistent)}
+                    className={`group flex items-center space-x-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
+                      isPersistent
+                        ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg hover:shadow-xl btn-glow'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300'
+                    }`}
+                  >
+                    <Save className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                    <span>{isPersistent ? 'Persistent' : 'Temporary'}</span>
+                  </button>
                 </div>
 
                 {/* Add Task Controls */}
@@ -287,7 +354,7 @@ export default function DemoPage() {
                 </div>
                 <div className="ml-4">
                   <h3 className="font-semibold text-blue-900 mb-3">Demo Configuration</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
                     <div className="bg-white/60 rounded-lg p-3 border border-blue-200/50">
                       <div className="text-sm font-medium text-blue-700">Max Retries</div>
                       <div className="text-lg font-bold text-blue-900">{maxRetries}</div>
@@ -300,9 +367,21 @@ export default function DemoPage() {
                       <div className="text-sm font-medium text-blue-700">Concurrency</div>
                       <div className="text-lg font-bold text-blue-900">{concurrency}</div>
                     </div>
+                    <div className="bg-white/60 rounded-lg p-3 border border-blue-200/50">
+                      <div className="text-sm font-medium text-blue-700">Persistent</div>
+                      <div className={`text-lg font-bold ${isPersistent ? 'text-purple-600' : 'text-blue-900'}`}>
+                        {isPersistent ? 'Yes' : 'No'}
+                      </div>
+                    </div>
                   </div>
                   <div className="text-sm text-blue-700 leading-relaxed">
                     <strong>Success tasks</strong> complete normally • <strong>Failure tasks</strong> fail and retry automatically • <strong>Slow tasks</strong> take 3 seconds to process
+                    {isPersistent && (
+                      <>
+                        <br />
+                        <strong>Persistent mode:</strong> Tasks are saved to localStorage and will persist across browser sessions
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
