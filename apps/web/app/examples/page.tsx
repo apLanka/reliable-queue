@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FileUp, Mail, Database, Code2, ExternalLink, Play } from 'lucide-react';
+import { FileUp, Mail, Database, Code2, ExternalLink, Play, Sparkles, ArrowRight, Copy, Check } from 'lucide-react';
 import CodeBlock from '../../components/CodeBlock';
 
 // File upload example code
@@ -426,59 +426,118 @@ const examples = [
 
 export default function ExamplesPage() {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-mesh opacity-5"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-3/4 left-1/2 w-96 h-96 bg-green-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float" style={{animationDelay: '4s'}}></div>
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-blue-600">
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <Code2 className="mx-auto h-12 w-12 text-white mb-6" />
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Examples
+      <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 overflow-hidden">
+        {/* Header Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center animate-fadeInUp">
+            <div className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 mb-8 backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 mr-2" />
+              Real-World Examples
+            </div>
+            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl lg:text-8xl text-balance">
+              Code Examples
             </h1>
-            <p className="mt-6 text-lg leading-8 text-green-100">
-              Real-world examples showing how to use Reliable Queue in different scenarios.
-              Copy the code and adapt it to your needs.
+            <p className="mt-8 text-xl leading-8 text-white/90 max-w-2xl mx-auto text-pretty">
+              Discover how to implement Reliable Queue in real-world scenarios. 
+              <span className="text-yellow-300 font-medium">Copy, paste, and customize</span> these production-ready examples.
             </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/demo"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+              >
+                <Play className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                <span>Try Live Demo</span>
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Examples */}
-      <div className="py-24 sm:py-32">
+      <div className="relative py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="space-y-24">
-            {examples.map((example) => (
-              <div key={example.title} className="relative">
-                <div className="mx-auto max-w-4xl">
-                  <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
-                    <div className="lg:col-span-5">
-                      <div className={`inline-flex rounded-lg p-3 ${example.color} border`}>
-                        <example.icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
-                        {example.title}
-                      </h3>
-                      <p className="mt-4 text-lg text-gray-600">
-                        {example.description}
-                      </p>
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {example.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+          <div className="text-center mb-20 animate-fadeInUp">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl text-balance">
+              Production-Ready
+              <span className="gradient-text"> Examples</span>
+            </h2>
+            <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto text-pretty">
+              Copy these battle-tested implementations and adapt them to your specific use cases
+            </p>
+          </div>
+          
+          <div className="space-y-32">
+            {examples.map((example, index) => (
+              <div key={example.title} className={`relative group animate-slideInUp`} style={{animationDelay: `${index * 200}ms`}}>
+                {/* Decorative background */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                
+                <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+                  <div className="lg:grid lg:grid-cols-12 lg:gap-0 items-stretch">
+                    <div className="lg:col-span-5 p-12 bg-gradient-to-br from-gray-50 to-white">
+                      <div className="h-full flex flex-col justify-center">
+                        <div className={`inline-flex rounded-2xl p-4 ${example.color} border-2 mb-8 group-hover:scale-110 transition-transform duration-300`}>
+                          <example.icon className="h-8 w-8" />
+                        </div>
+                        <h3 className="text-3xl font-bold tracking-tight text-gray-900 mb-6 group-hover:text-blue-600 transition-colors duration-300">
+                          {example.title}
+                        </h3>
+                        <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                          {example.description}
+                        </p>
+                        <div className="flex flex-wrap gap-3 mb-8">
+                          {example.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 border border-blue-200 hover:shadow-md transition-shadow duration-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <button className="group/btn flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <Copy className="h-4 w-4 group-hover/btn:scale-110 transition-transform duration-300" />
+                            <span>Copy Code</span>
+                          </button>
+                          <Link 
+                            href="/demo"
+                            className="group/btn flex items-center space-x-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
                           >
-                            {tag}
-                          </span>
-                        ))}
+                            <Play className="h-4 w-4 group-hover/btn:scale-110 transition-transform duration-300" />
+                            <span>Try Demo</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                    <div className="mt-8 lg:mt-0 lg:col-span-7">
-                      <CodeBlock
-                        code={example.code}
-                        language={example.language}
-                        title={example.title}
-                        showLineNumbers={true}
-                      />
+                    <div className="lg:col-span-7 relative">
+                      <div className="sticky top-8">
+                        <div className="relative">
+                          <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 rounded-2xl blur opacity-20"></div>
+                          <div className="relative">
+                            <CodeBlock
+                              code={example.code}
+                              language={example.language}
+                              title={example.title}
+                              showLineNumbers={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -488,31 +547,73 @@ export default function ExamplesPage() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Ready to try it yourself?
+      {/* CTA Section */}
+      <div className="relative py-24 sm:py-32 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-green-600"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-mesh opacity-10"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center animate-fadeInUp">
+            <div className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 mb-8 backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 mr-2 animate-pulse" />
+              Ready to Build?
+            </div>
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl text-balance">
+              Start Building with
+              <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 bg-clip-text text-transparent"> Reliable Queue</span>
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Experience Reliable Queue in action with our interactive demo, or dive into the full documentation.
+            <p className="mt-8 text-xl leading-8 text-white/90 max-w-3xl mx-auto text-pretty">
+              Experience the power of reliable task processing with our interactive demo, 
+              or dive deep into the comprehensive documentation.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link
                 href="/demo"
-                className="rounded-md bg-green-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-500 flex items-center gap-2"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl min-w-[200px] justify-center"
               >
-                <Play className="h-4 w-4" />
-                Try Interactive Demo
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+                <div className="relative flex items-center gap-3">
+                  <Play className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Try Interactive Demo</span>
+                </div>
               </Link>
               <Link
                 href="/docs"
-                className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600 flex items-center gap-2"
+                className="group flex items-center gap-3 px-8 py-4 border-2 border-white/30 text-white rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 min-w-[200px] justify-center backdrop-blur-sm"
               >
-                View Documentation
-                <ExternalLink className="h-4 w-4" />
+                <span>View Documentation</span>
+                <ExternalLink className="h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
               </Link>
+            </div>
+            
+            {/* Feature highlights */}
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <div className="text-center group">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl border border-white/20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Code2 className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-white mb-2">TypeScript Ready</h3>
+                <p className="text-sm text-white/80">Full type safety and IntelliSense support</p>
+              </div>
+              <div className="text-center group">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl border border-white/20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Database className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-white mb-2">Persistent Storage</h3>
+                <p className="text-sm text-white/80">Built-in persistence for reliability</p>
+              </div>
+              <div className="text-center group">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl border border-white/20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-white mb-2">Production Ready</h3>
+                <p className="text-sm text-white/80">Battle-tested in real applications</p>
+              </div>
             </div>
           </div>
         </div>
