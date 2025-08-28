@@ -185,7 +185,7 @@ export default function Footer() {
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <span>© 2024 Reliable Queue</span>
+              <span>© 2025 Reliable Queue</span>
               <span className="hidden md:inline">•</span>
               <span>MIT License</span>
               <span className="hidden md:inline">•</span>
